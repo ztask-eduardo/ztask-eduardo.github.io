@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0F0E">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ZTask">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>ZTask Manager</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  html,body{margin:0;height:100%;background:#0B0F0E;color:#e9efec;font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+  #spl{position:fixed;inset:0;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 12% 8%,rgba(43,210,127,.30),transparent 45%),radial-gradient(circle at 90% 90%,rgba(255,77,69,.28),transparent 45%),#0B0F0E}
+  #spl img{width:96px;height:96px;border-radius:26px;animation:entra .9s cubic-bezier(.3,1.6,.5,1) both,late 1.6s ease-in-out .9s infinite;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+  #spl h1{margin:18px 0 4px;font-size:24px;letter-spacing:-.4px}#spl h1 b{color:#FF5A52}
+  #spl p{margin:0;opacity:.7;font-size:14px}
+  .dots{display:flex;gap:7px;justify-content:center;margin-top:18px}.dots i{width:8px;height:8px;border-radius:50%;background:#2BD27F;animation:dot 1s ease-in-out infinite}.dots i:nth-child(2){animation-delay:.15s;background:#e9efec}.dots i:nth-child(3){animation-delay:.3s;background:#FF5A52}
+  @keyframes entra{from{transform:rotate(-25deg) scale(.3);opacity:0}}
+  @keyframes late{50%{transform:scale(1.06)}}
+  @keyframes dot{50%{transform:translateY(-7px);opacity:.5}}
+  .err{max-width:330px;margin:16px auto 0;background:rgba(255,255,255,.08);border-radius:14px;padding:12px 14px;font-size:14px}
+  .err button{margin-top:10px;background:#D9342B;color:#fff;border:0;border-radius:11px;padding:10px 18px;font:inherit;font-weight:700}
+</style>
+</head>
+<body>
+<div id="spl"><div><img src="icon-192.png" alt=""><h1><b>Z</b>Task Manager</h1><p id="splTxt">Cargando…</p><div class="dots" id="dots"><i></i><i></i><i></i></div><div id="splErr"></div></div></div>
+<script>
+/* ============================================================
+ *  ZTask Manager – cargador fijo (v5.2.1) para GitHub Pages
+ *  Pegá abajo el link /exec de tu implementación de Apps Script
+ *  (Quién tiene acceso: "Cualquier usuario"). No hace falta tocar
+ *  nada más: la pantalla se trae del script y se actualiza sola.
+ * ============================================================ */
+const WEB_APP = 'https://script.google.com/macros/s/AKfycbx7DiFqJYXpQx9IH0PLSi9sCit3PrPAIprqtzIV7fPXC6BnI8ktyNlyCvV6ehWp_gvR4w/exec';
+
+const K = 'zt_ui_cache';
+function pintar(html) {
+  const extra = '<script>window.ZT_API=' + JSON.stringify(WEB_APP) + ';window.ZT_BASE="";<\/script>' +
+    '<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">' +
+    '<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="ZTask">';
+  html = html.replace('<head>', '<head>' + extra + '<style>#spl{display:none!important}</style>');
+  const go = () => { document.open(); document.write(html); document.close(); };
+  // si la página todavía se está cargando, document.open no reemplaza: esperar a que termine
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => setTimeout(go, 0)); else go();
+}
+function error(msg) {
+  document.getElementById('dots').style.display = 'none';
+  document.getElementById('splTxt').textContent = 'No hay conexión con el servidor';
+  document.getElementById('splErr').innerHTML = '<div class="err">' + msg + '<br><button onclick="location.reload()">Reintentar</button></div>';
+}
+let cache = null;
+try { cache = JSON.parse(localStorage.getItem(K) || 'null'); } catch (e) {}
+if (!/^https:\/\/script\.google\.com\/.+\/exec$/.test(WEB_APP)) {
+  error('Falta conectar la app: en GitHub abrí <b>index.html</b> y pegá tu link <b>/exec</b> en WEB_APP.');
+} else {
+  const fresco = fetch(WEB_APP + '?ui=1&t=' + Date.now(), { redirect: 'follow' }).then(r => r.json());
+  if (cache && cache.html) {
+    pintar(cache.html);
+    fresco.then(j => {   // hay versión nueva: se guarda y se recarga una vez
+      if (j && j.html && j.html !== cache.html) { try { localStorage.setItem(K, JSON.stringify(j)); } catch (e) {} location.reload(); }
+    }).catch(() => {});
+  } else {
+    fresco.then(j => {
+      if (!j || !j.html) throw 0;
+      try { localStorage.setItem(K, JSON.stringify(j)); } catch (e) {}
+      pintar(j.html);
+    }).catch(() => error('Revisá tu internet. Si sos el dueño: el link /exec tiene que ser el de la implementación con acceso "Cualquier usuario" y hay que hacer Nueva versión después de pegar el código.'));
+  }
+}
+if ('serviceWorker' in navigator) { try { navigator.serviceWorker.register('sw.js'); } catch (e) {} }
+</script>
+</body>
+</html>

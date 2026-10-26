@@ -1,0 +1,34 @@
+ZTASK MANAGER – SUBIR A SU PROPIA DIRECCIÓN (para instalarla junto a zwallet)
+
+Por qué: zwallet y ZTask estaban en la misma dirección (educfc89.github.io) y el Chrome del
+celular las toma como la misma app ("ya está instalada"). Con una organización gratis de GitHub,
+ZTask queda en https://ztask-eduardo.github.io/ (otra dirección) y se instalan las dos.
+
+1) CREAR LA ORGANIZACIÓN (gratis, en la compu)
+   github.com (con Educfc89) › foto arriba a la derecha › Your organizations › New organization
+   › plan "Free" › Organization account name: ztask-eduardo  (si está ocupado: ztask-edu, ztask-ec89…)
+   › Contact email: tu mail › "My personal account" › Next › Complete setup (saltear invitar gente).
+
+2) CREAR EL REPO EN LA ORGANIZACIÓN
+   En la organización › Repositories › New repository
+   › Repository name EXACTO: ztask-eduardo.github.io   (el mismo nombre de la organización + .github.io)
+   › Public › Create repository.
+
+3) SUBIR LOS ARCHIVOS
+   "uploading an existing file" › arrastrá TODO lo de esta carpeta (index.html, manifest.webmanifest,
+   sw.js, los 5 .png y este LEEME) › Commit changes.
+
+4) ACTIVAR PAGES
+   Settings › Pages › Source: Deploy from a branch › Branch: main / (root) › Save.
+   En 1-3 minutos: https://ztask-eduardo.github.io/
+
+5) AVISARLE A LA PLANILLA LA DIRECCIÓN NUEVA
+   Planilla Gestor de Tareas › ⚙️ Configuración › APP_URL_PUBLICA = https://ztask-eduardo.github.io/
+
+6) EN EL CELULAR
+   a. Desinstalá ZTask (mantener apretado el ícono › Desinstalar). zwallet NO hace falta tocarla.
+   b. Abrí tu link de dueño NUEVO: https://ztask-eduardo.github.io/?k=TU_CLAVE_DE_DUEÑO
+   c. Menú ⋮ › Instalar app.
+
+El repo viejo (Educfc89/ZTaskManager) se puede borrar o dejar; ya no se usa.
+Si usaste otro nombre de organización, cambiá "ztask-eduardo" por ese en todos los pasos.
