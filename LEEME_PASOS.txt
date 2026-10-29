@@ -32,3 +32,36 @@ ZTask queda en https://ztask-eduardo.github.io/ (otra dirección) y se instalan 
 
 El repo viejo (Educfc89/ZTaskManager) se puede borrar o dejar; ya no se usa.
 Si usaste otro nombre de organización, cambiá "ztask-eduardo" por ese en todos los pasos.
+
+======================================================================
+NOVEDADES v6.0 (29/10/2026) – LOGO NUEVO Y TEMAS
+======================================================================
+- Logo nuevo (Z azul-verde con tilde) en el ícono de la app, la pantalla de carga y la de entrada.
+- Tema principal "ZTask" (azul y verde sobre oscuro) + Neón, Matrix, Violeta, Ámbar, Claro y Clásicos.
+  Se elige en la app: Config › 🎨 Tema (o tocando el logo de arriba). Casilla ✨ Animaciones.
+
+CÓMO SUBIR ESTA VERSIÓN A GITHUB (esta vez cambian los íconos, no solo el código)
+ 1) En la compu, descomprimí ZTask_github_v6.0.zip.
+ 2) Entrá a https://github.com/ztask-eduardo/ztask-eduardo.github.io
+ 3) Add file › Upload files › arrastrá TODOS los archivos de la carpeta:
+    index.html, manifest.webmanifest, sw.js, icon-192.png, icon-512.png, icon-maskable-512.png,
+    apple-touch-icon.png, favicon.png y este LEEME. GitHub reemplaza los que ya existen.
+ 4) Abajo: Commit changes. Esperá 1–3 minutos.
+ 5) Comprobar: abrí https://ztask-eduardo.github.io/ en la compu y apretá Ctrl+Shift+R.
+    Tiene que aparecer el logo nuevo al cargar.
+
+CÓMO VER EL ÍCONO NUEVO EN EL CELULAR (el ícono instalado no se cambia solo)
+ Android (Chrome):
+  a) Mantené apretado el ícono de ZTask › Desinstalar (o Información de la app › Desinstalar).
+     zwallet NO se toca.
+  b) Abrí Chrome › tu link de dueño: https://ztask-eduardo.github.io/?k=TU_CLAVE_DE_DUEÑO
+     (Zaydi abre https://ztask-eduardo.github.io/ y entra con su usuario y clave).
+  c) Esperá que cargue › menú ⋮ (arriba a la derecha) › "Instalar app" › Instalar.
+  d) Si sigue apareciendo el logo viejo: Chrome › ⋮ › Configuración › Configuración de sitios ›
+     Todos los sitios › ztask-eduardo.github.io › Borrar datos y volvé al paso b.
+     (Después de borrar datos, volvé a abrir tu link de dueño para que te reconozca.)
+ PC (Chrome): abrí la app instalada › ⋮ › "Desinstalar ZTask Manager" › abrí el link en Chrome ›
+     ícono de instalar en la barra de direcciones (o ⋮ › Transmitir, guardar y compartir › Instalar).
+ iPhone (Safari): borrá el acceso directo › abrí el link en Safari › Compartir › Agregar a inicio.
+
+Tus tareas, listas y mercado NO se borran: viven en la planilla.
