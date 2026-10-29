@@ -10,8 +10,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>ZTask Manager</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon.png?v=6">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=6">
 <style>
   html,body{margin:0;height:100%;background:#11151d;color:#eef2f8;font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
   #spl{position:fixed;inset:0;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 12% 8%,rgba(37,99,235,.40),transparent 45%),radial-gradient(circle at 90% 90%,rgba(16,185,129,.30),transparent 45%),#11151d}
@@ -27,7 +27,7 @@
 </style>
 </head>
 <body>
-<div id="spl"><div><img src="icon-192.png" alt=""><h1><b>Z</b>Task Manager</h1><p id="splTxt">Cargando…</p><div class="dots" id="dots"><i></i><i></i><i></i></div><div id="splErr"></div></div></div>
+<div id="spl"><div><img src="icon-192.png?v=6" alt=""><h1><b>Z</b>Task Manager</h1><p id="splTxt">Cargando…</p><div class="dots" id="dots"><i></i><i></i><i></i></div><div id="splErr"></div></div></div>
 <script>
 /* ============================================================
  *  ZTask Manager – cargador fijo (v5.2.1) para GitHub Pages
@@ -40,7 +40,7 @@ const WEB_APP = 'https://script.google.com/macros/s/AKfycbx7DiFqJYXpQx9IH0PLSi9s
 const K = 'zt_ui_cache';
 function pintar(html) {
   const extra = '<script>window.ZT_API=' + JSON.stringify(WEB_APP) + ';window.ZT_BASE="";<\/script>' +
-    '<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">' +
+    '<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="favicon.png?v=6"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=6">' +
     '<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="ZTask">';
   html = html.replace('<head>', '<head>' + extra + '<style>#spl{display:none!important}</style>');
   const go = () => { document.open(); document.write(html); document.close(); };
